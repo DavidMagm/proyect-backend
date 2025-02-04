@@ -4,7 +4,7 @@ const productsRouter = require('./products.route');
 const categoriesRouter = require('./categories.route');
 
 function indexRoute(app) {
-    app.use('/api', router);
+    app.use('/api/v1', router);
     router.use('/products', productsRouter);
     router.use('/categories', categoriesRouter);
 }

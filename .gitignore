@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,linux,windows,visualstudiocode
 
 node_modules/
+postgres_data/
 
 ### Linux ###
 *~
