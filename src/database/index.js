@@ -20,9 +20,7 @@ if(config.isProd) {
     }
 }
 
-const sequelize = new Sequelize(config.dbUrl, {
-    dialect: 'postgres'
-});
+const sequelize = new Sequelize(config.dbUrl, options);
 
 setUpModels(sequelize);
 
