@@ -10,7 +10,7 @@ function indexRoute(app) {
     router.use('/products', productsRouter);
     router.use('/categories', categoriesRouter);
     router.use('/users', usersRouter);
-    router.use('./custumers', custumersRouter);
+    router.use('/custumers', custumersRouter);
 }
 
 module.exports = indexRoute;
