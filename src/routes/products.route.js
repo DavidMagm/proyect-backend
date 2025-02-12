@@ -1,5 +1,7 @@
 const router = require('express').Router();
+const validateHandler = require('../middleware/validaterHandler');
 const ProductsService = require('../services/products.service');
+const { createProductSchema, getProductSchema } = require('../shemas/products.schema');
 const service = new ProductsService();
 
 router.get('/', 
@@ -13,6 +15,7 @@ router.get('/',
 });
 
 router.get('/:id', 
+    validateHandler(getProductSchema, 'query'),
     async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -23,8 +26,12 @@ router.get('/:id',
     }  
 });
 
-router.post('/', (req, res) => {
-    res.send('Hello World!');
+router.post('/', 
+    validateHandler(createProductSchema, 'body'),
+    async (req, res) => {
+    const product = req.body;
+    const newProduct = await service.create(product); 
+    res.json(newProduct);
 });
 
 module.exports = router;

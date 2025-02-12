@@ -1,6 +1,6 @@
 const {Model, Sequelize, DataTypes} = require('sequelize');
 
-const ProductSchema = {
+const UserSchema = {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -11,17 +11,18 @@ const ProductSchema = {
         type: DataTypes.STRING,
         allowNull: false
     },
-    price: {
+    email: {
         type: DataTypes.DECIMAL,
         allowNull: false
     },
-    image: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    description: {
+    password: {
         allowNull: false,
         type: DataTypes.STRING,
+    },
+    role: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: 'customer'
     },
     createdAt: {
         allowNull: false,
@@ -29,31 +30,20 @@ const ProductSchema = {
         field: 'create_at',
         defaultValue: Sequelize.NOW
     },
-    categoryId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        field: 'category_id',
-        references: {
-            model: 'categories',
-            key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-    }
 };
 
-class Product extends Model {
+class User extends Model {
     static associate(models) {
-        this.belongsTo(models.Category, { foreignKey: 'categoryId', as: 'category' });
+        //this.hasOne(models.Category, { foreignKey: 'categoryId', as: 'category' });
     }
     static config(sequelize) {
         return {
             sequelize,
-            modelName: 'Product',
-            tableName: 'products',
+            modelName: 'User',
+            tableName: 'users',
             timestamps: false
         }
     }
 }
 
-module.exports = {ProductSchema, Product};
+module.exports = {UserSchema, User};
