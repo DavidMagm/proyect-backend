@@ -1,4 +1,4 @@
-const {models} = require('../database/database');
+const {models} = require('../database/index');
 const boom = require('@hapi/boom');
 
 
